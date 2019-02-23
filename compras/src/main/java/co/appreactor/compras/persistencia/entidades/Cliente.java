@@ -95,6 +95,10 @@ public class Cliente {
   public void setDirecciones(List<Direccion> direcciones) {
     this.direcciones = direcciones;
   }
-  
+
+  @Override
+  public String toString() {
+    return this.getNumero()+"";
+  }
   
 }

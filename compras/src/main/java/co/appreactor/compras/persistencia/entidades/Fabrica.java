@@ -49,6 +49,11 @@ public class Fabrica {
     this.telefono = telefono;
   }
 
+  @Override
+  public String toString() {
+    return this.getNumero()+"";
+  }
+
   
   
 }

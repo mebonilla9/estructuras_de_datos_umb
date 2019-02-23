@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author lord_nightmare
  */
-public class Pedido {
+public class Pedido extends Entidad{
 
   private int numero;
   private Date fecha;
@@ -96,6 +96,10 @@ public class Pedido {
   public void setCuerpo(List<ConceptoPedido> cuerpo) {
     this.cuerpo = cuerpo;
   }
-  
+
+  @Override
+  public String toString() {
+    return this.getNumero() + " - " + this.fecha;
+  }
   
 }

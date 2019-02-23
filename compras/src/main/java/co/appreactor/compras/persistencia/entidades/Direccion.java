@@ -12,7 +12,7 @@ import java.util.Date;
  * @author lord_nightmare
  */
 public class Direccion {
-  
+
   private int numero;
   private String calle;
   private String comuna;
@@ -95,6 +95,10 @@ public class Direccion {
   public void setFecha(Date fecha) {
     this.fecha = fecha;
   }
-  
-  
+
+  @Override
+  public String toString() {
+    return this.getCalle() + " - " + this.getNumero() + " - " + this.getCiudad();
+  }
+
 }
