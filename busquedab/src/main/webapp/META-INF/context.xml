@@ -1,0 +1,28 @@
+<Context path="/busquedab">
+    <!--
+        name=nombre del recurso
+
+-->
+    <Resource name="jdbc/PersonasDs"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="100"
+              maxIdle="30"
+              maxWaitMillis="10000"
+              username="lord_nightmare"
+              password="rinnegan1988"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/personas"/>
+<!--
+    <Resource name="jdbc/PersonasDs"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="100"
+              maxIdle="30"
+              maxWaitMillis="10000"
+              username="mbrain1_busquedab"
+              password="xy36bic92"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/mbrain1_personas"/>
+-->
+</Context>

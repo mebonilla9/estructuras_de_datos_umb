@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Busqueda binaria | Laboratorio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+<main>
+    <div v-if="personas.length == 0" id="preloader">
+        <div id="loader"></div>
+    </div>
+    <div id="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-4">
+                <div class="bordeado">
+                    <form @submit.prevent="buscarPersona">
+                        <div class="form-group">
+                            <label for="txtNombre">Nombre</label>
+                            <input type="text" v-model="bPersona" class="form-control" id="txtNombre" placeholder="Ingrese un nombre">
+                            <small id="lblAyuda" class="form-text text-muted">Nombre de la persona que deseas buscar.
+                            </small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div v-if="posicionEncontrada > -1" class="row justify-content-md-center">
+            <div class="bordeado">
+                <label>Persona encontrada en la posición {{ posicionEncontrada}}</label>
+                <pre>{{ personas[posicionEncontrada] }}</pre>
+            </div>
+        </div>
+        <div v-if="personas.length != 0" class="row justify-content-md-center">
+            <div class="col col-md-8">
+                <div>
+                    <table id="tblPersonas" class="table table-sm table-striped table-dark">
+                        <thead>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Cedula</th>
+                            <th>Salario</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="persona in personas">
+                                <td>{{ persona.id }}</td>
+                                <td>{{ persona.nombre }}</td>
+                                <td>{{ persona.cedula }}</td>
+                                <td>{{ persona.salario }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
