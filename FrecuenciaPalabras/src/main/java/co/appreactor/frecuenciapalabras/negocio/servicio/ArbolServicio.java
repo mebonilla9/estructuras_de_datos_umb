@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Optional;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 
@@ -77,6 +78,15 @@ public class ArbolServicio {
     } else {
       getArbolPalabras().agregar(palabra);
     }
+  }
+  
+  public void buscarEnArbol(String palabra) throws BadLocationException{
+    Optional<Nodo> nodo = this.arbolPalabras.buscarEnArbol(palabra);
+    if (nodo.isEmpty()) {
+      ConsolaUtil.cargarMensaje(txtConsola.getStyledDocument(), EOrigen.PRESENTACION, "Palabra no encontrada");
+      return;
+    }
+    ConsolaUtil.cargarMensaje(txtConsola.getStyledDocument(), EOrigen.PRESENTACION, "Resultado: "+ nodo.get().getValor());
   }
 
   /**

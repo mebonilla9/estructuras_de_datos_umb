@@ -9,6 +9,7 @@ import co.appreactor.frecuenciapalabras.aplicacion.Principal;
 import co.appreactor.frecuenciapalabras.negocio.constantes.EOrigen;
 import co.appreactor.frecuenciapalabras.negocio.util.ConsolaUtil;
 import co.appreactor.frecuenciapalabras.persistencia.entidades.Palabra;
+import java.util.Optional;
 import javax.swing.text.BadLocationException;
 
 /**
@@ -52,6 +53,24 @@ public class Nodo {
         this.derecha.agregar(valor);
       } else {
         this.derecha = new Nodo(valor);
+      }
+    }
+  }
+
+  public Optional<Nodo> buscarEnArbol(String texto) {
+    if (palabra.getValor().equals(texto)) {
+      return Optional.of(this);
+    } else if (palabra.getValor().compareTo(texto) > COMPARADOR) {
+      if (this.izquierda != null) {
+        return this.izquierda.buscarEnArbol(texto);
+      } else {
+        return Optional.empty();
+      }
+    } else {
+      if (this.derecha != null) {
+        return this.derecha.buscarEnArbol(texto);
+      } else {
+        return Optional.empty();
       }
     }
   }

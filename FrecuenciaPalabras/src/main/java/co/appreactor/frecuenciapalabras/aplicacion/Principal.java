@@ -11,8 +11,6 @@ import co.appreactor.frecuenciapalabras.negocio.util.ConsolaUtil;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -55,6 +53,10 @@ public class Principal extends javax.swing.JFrame {
     btnProcesar = new javax.swing.JButton();
     btnImprimir = new javax.swing.JButton();
     btnLimpiar = new javax.swing.JButton();
+    btnBuscar = new javax.swing.JButton();
+    btnImprimirFrecuencia = new javax.swing.JButton();
+    jLabel1 = new javax.swing.JLabel();
+    txtBuscar = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +91,17 @@ public class Principal extends javax.swing.JFrame {
       }
     });
 
+    btnBuscar.setText("Buscar");
+    btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnBuscarActionPerformed(evt);
+      }
+    });
+
+    btnImprimirFrecuencia.setText("Arbol por frecuencia");
+
+    jLabel1.setText("Palabra a buscar");
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -101,7 +114,13 @@ public class Principal extends javax.swing.JFrame {
           .addComponent(btnAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(btnProcesar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(btnImprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(btnImprimirFrecuencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(jLabel1)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addComponent(txtBuscar))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -109,6 +128,7 @@ public class Principal extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane1)
           .addGroup(layout.createSequentialGroup()
             .addComponent(btnAbrir)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,8 +137,14 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(btnImprimir)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnLimpiar)
-            .addGap(0, 90, Short.MAX_VALUE))
-          .addComponent(jScrollPane1))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(btnImprimirFrecuencia)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+            .addComponent(jLabel1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(btnBuscar)))
         .addContainerGap())
     );
 
@@ -183,9 +209,19 @@ public class Principal extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_btnImprimirActionPerformed
 
+  private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    try {
+      this.servicio.buscarEnArbol(txtBuscar.getText().toLowerCase());
+      txtBuscar.setText("");
+    } catch (BadLocationException e) {
+      e.printStackTrace(System.err);
+    }
+  }//GEN-LAST:event_btnBuscarActionPerformed
+
   /**
-   * @param args the command line arguments
-   */
+       * @param args the command line arguments
+       */
+
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -218,10 +254,14 @@ public class Principal extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnAbrir;
+  private javax.swing.JButton btnBuscar;
   private javax.swing.JButton btnImprimir;
+  private javax.swing.JButton btnImprimirFrecuencia;
   private javax.swing.JButton btnLimpiar;
   private javax.swing.JButton btnProcesar;
+  private javax.swing.JLabel jLabel1;
   private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JTextField txtBuscar;
   public static javax.swing.JTextPane txtConsola;
   // End of variables declaration//GEN-END:variables
 }
