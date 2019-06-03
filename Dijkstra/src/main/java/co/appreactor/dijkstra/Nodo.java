@@ -11,9 +11,9 @@ package co.appreactor.dijkstra;
  */
 public class Nodo implements Comparable<Nodo> {
 
-  private char id;
-  private int distancia = Integer.MAX_VALUE;
-  private Nodo procedencia;
+  public char id;
+  public int distancia = Integer.MAX_VALUE;
+  public Nodo procedencia;
 
   public Nodo(char id, int distancia, Nodo nodo){
     this.id= id;
